@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Render</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #ffffff;
+        padding: 40px 20px;
+      }
+
+      .form-card {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 10px 0;
+      }
+
+      .main-title {
+        font-family: Georgia, serif;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        margin-top: 10px;
+        color: #222;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      fieldset {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 15px 20px 20px 20px;
+      }
+
+      legend {
+        font-size: 14px;
+        padding: 0 5px;
+      }
+
+      .form-group {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .form-group:last-child {
+        margin-bottom: 0;
+      }
+
+      .form-group.textarea-group {
+        align-items: start;
+      }
+
+      .form-group.textarea-group label {
+        padding-top: 4px;
+      }
+
+      label {
+        font-size: 14px;
+        font-weight: normal;
+        color: #000000;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      select {
+        width: 200px;
+        font-size: 14px;
+        padding: 4px 6px;
+        border: 1px solid #767676;
+        border-radius: 2px;
+        font-family: Arial, sans-serif;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 120px;
+        font-size: 14px;
+        padding: 6px 8px;
+        border: 1px solid #767676;
+        border-radius: 2px;
+        font-family: Arial, sans-serif;
+        resize: vertical;
+      }
+
+      select {
+        cursor: pointer;
+        background-color: white;
+      }
+
+      /* Checkboxes and Radio buttons */
+      .checkbox-group,
+      .radio-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .checkbox-group input,
+      .radio-group input {
+        margin-right: 4px;
+        cursor: pointer;
+      }
+
+      .checkbox-group label,
+      .radio-group label {
+        font-size: 14px;
+        font-weight: normal;
+        margin-right: 12px;
+        cursor: pointer;
+      }
+
+      .form-footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 15px;
+      }
+
+      button {
+        background-color: #0000ff;
+        color: white;
+        border: 1px solid #000000;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: normal;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0000d0;
+      }
+
+      button:active {
+        background-color: #0000a0;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .form-group {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-card">
+      <form
+        action="https://teach-backend-fawn.vercel.app/api/product"
+        method="POST"
+      >
+        <fieldset>
+          <legend>General Info</legend>
+          <div class="form-group">
+            <label for="name">Item Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group textarea-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+              <option value="">notSpecified</option>
+              <option value="consumption">consumption</option>
+              <option value="clothing">household</option>
+              <option value="books">electronic</option>
+              <option value="home">gadget</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Misc.</legend>
+          <div class="form-group">
+            <label for="inventory">Inventory Amount</label>
+            <input type="text" id="inventory" name="inventory" required />
+          </div>
+          <div class="form-group">
+            <label for="price">List price</label>
+            <input type="text" id="price" name="price" required />
+          </div>
+          <div class="form-group">
+            <label>Available Stores</label>
+            <div class="checkbox-group">
+              <input
+                type="checkbox"
+                id="bangkok"
+                name="availableStore[]"
+                value="Bangkok"
+              />
+              <label for="bangkok">Bangkok</label>
+              <input
+                type="checkbox"
+                id="pattaya"
+                name="availableStore[]"
+                value="Pattaya"
+              />
+              <label for="pattaya">Pattaya</label>
+              <input
+                type="checkbox"
+                id="phuket"
+                name="availableStore[]"
+                value="Phuket"
+              />
+              <label for="phuket">Phuket</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Available Stores</label>
+            <div class="radio-group">
+              <input type="radio" id="active" name="status" value="Active" />
+              <label for="active">Active</label>
+              <input
+                type="radio"
+                id="inactive"
+                name="status"
+                value="Inactive"
+              />
+              <label for="inactive">Inactive</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Staff</legend>
+
+          <div class="form-group">
+            <label for="staff">Staff Email</label>
+            <input type="text" id="staff" name="staffEmail" required />
+          </div>
+        </fieldset>
+
+        <div class="form-footer">
+          <button type="submit">Submit Form</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
